@@ -4,13 +4,13 @@ const { expect } = require('chai');
 const mongoose = require('mongoose');
 const request = require('supertest')(app);
 const seedDB = require('../seed/seed');
-const { userData } = require('../seed/testData');
+const  userData = require('../seed/testData/users');
 
 describe('/api', () => {
   let user;
   beforeEach(() => {
     return seedDB(userData).then(docs => {
-      [user] = docs;
+      user = docs;
     });
   });
   after(() => {
