@@ -1,8 +1,9 @@
 const userRouter = require("express").Router();
-const {sendUser, addUser} =require("../controllers/userCont")
+const {loginUser, addUser, updateScore} =require("../controllers/userCont")
 
 userRouter.post("/", addUser)
-userRouter.post('/login', sendUser)
+userRouter.post('/login', loginUser)
+userRouter.patch('/:username', updateScore)
 
 
 

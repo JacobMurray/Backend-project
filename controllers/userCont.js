@@ -5,8 +5,9 @@ const jwt = require('jsonwebtoken');
 const secret = '7x0jhxt"9(thpX6';
 
 exports.addUser = (req, res, next) => {
-  const { username, name, password, confimPass } = req.body;
-  if (password !== confimPass) res.send('passwords must match');
+  const { username, name, password, confirm } = req.body;
+  if (!username || !name || !confirm) res.status(400).send({ message: 'Please fill out all fields' })
+  if (password !== confirm) res.status(400).send({ error: 'Passwords must match' });
   else {
     User.register(new User({ username, name }), password)
       .then(user => {
@@ -20,7 +21,7 @@ exports.addUser = (req, res, next) => {
   }
 };
 
-exports.sendUser = (req, res, next) => {
+exports.loginUser = (req, res, next) => {
   passport.authenticate('local' ,
     (err, user, info) => {
       if (err) {
@@ -30,8 +31,21 @@ exports.sendUser = (req, res, next) => {
         return res.status(401).json({ error: 'Invalid Username or Password.' });
       }
       if (user) {
-        console.log(info)
        res.send(user)
       }
     })(req, res, next);
 };
+
+
+exports.updateScore = (req,res,next) => {
+  const {score} = req.query;
+  const {username} = req.params
+  console.log(score)
+  User.findOneAndUpdate(
+    {username},
+    { $inc: { score } },
+    { new: true }
+    )
+    .then(user => res.send(user))
+
+}
