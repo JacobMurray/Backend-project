@@ -1,17 +1,20 @@
 const User = require('../models/user');
+const passport = require('passport');
 
 exports.addUser = (req, res, next) => {
-  User.register(new User({ username: req.body.username }), req.body.password)
+  const { username, name, password, confimPass } = req.body
+  if(password !== confimPass) res.send('passwords must match')
+  else{
+  User.register(new User({ username, name }), password, )
     .then(user => {
       passport.authenticate('local');
-      return user;
-    })
-    .then(user => {
-      res.send(user);
+      res.send(user)
     })
     .catch(error => {
+      console.log(error)
       res.send(error)
     });
+}
 };
 
 exports.sendUser = (req, res, next) => {
