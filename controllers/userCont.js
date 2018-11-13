@@ -50,3 +50,10 @@ exports.updateScore = (req,res,next) => {
     .then(user => res.send(user))
 
 }
+
+exports.getAllUsers = (req, res, next) => {
+  User.find()
+  .then(users => {
+    res.send({users})
+  })
+}
