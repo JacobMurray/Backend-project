@@ -12,7 +12,7 @@ exports.addUser = (req, res, next) => {
     User.register(new User({ username, name }), password)
       .then(user => {
         passport.authenticate('local');
-        res.send(user);
+        res.status(201).send(user);
       })
       .catch(error => {
         console.log(error);

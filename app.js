@@ -58,7 +58,7 @@ app.get('/api', (req, res) =>
 app.use('/api/user', userRouter);
 
 //Error handling
-app.use("/*", (req, res, next) => next({ status: 404, message: "page not found" }));
+app.use("/*", (req, res, next) => next({ status: 404, message: `${req.originalUrl} does not exist` }));
 app.use(handle404);
 app.use(handle400);
 app.use(handle500);

@@ -21,8 +21,21 @@ describe('/api', () => {
       return request.get('/api/wrongurl')
       .expect(404)
       .then(res => {
-        expect(res.body.msg).to.equal('/api/wrongurl does not exist')
+        expect(res.body.message).to.equal('/api/wrongurl does not exist')
       })
+    });
+  });
+  describe('/api/user', () => {
+    it('POST returns 200 and userData', () => {
+      return request
+      .post('/api/user')
+      .send({
+        name: 'Mr bean',
+        username: 'beanie',
+        password: 'password',
+        confirm: 'password'
+      })
+      .expect(201)
     });
   });
 });
