@@ -28,10 +28,10 @@ exports.loginUser = (req, res, next) => {
         return next(err);
       }
       if (!user) {
-        return res.status(401).json({ error: 'Invalid Username or Password.' });
+        return res.status(401).json({ message: 'Invalid Username or Password.' });
       }
       if (user) {
-       res.send(user)
+       res.status(200).send(user)
       }
     })(req, res, next);
 };
