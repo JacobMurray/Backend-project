@@ -14,7 +14,7 @@ const { handle404, handle400, handle500 } = require("./error-handling");
 
 
 mongoose.connect(
-  DB_URL,
+  DB_URL,{ useNewUrlParser: true },
   () => {
     console.log(`connected to ${DB_URL}`);
   }

@@ -39,9 +39,9 @@ exports.loginUser = (req, res, next) => {
 
 exports.updateScore = (req,res,next) => {
   const {score} = req.query;
+  const points = parseInt(score)
   const {username} = req.params
-  if(typeof score !== Number) return res.status(401).send( {message: 'Invalid score type' })
-  console.log(score)
+  if(!points) return res.status(401).send( {message: 'Invalid score type' })
   User.findOneAndUpdate(
     {username},
     { $inc: { score } },
