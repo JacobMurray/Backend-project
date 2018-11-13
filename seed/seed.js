@@ -14,7 +14,7 @@ const seedDB = userData => {
   })
   .then(user => {
     passport.authenticate('local');
-    console.log(user);
+    return user
   })
   .catch(error => {
     console.log(error);

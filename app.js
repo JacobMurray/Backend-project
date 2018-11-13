@@ -10,6 +10,7 @@ const cors = require('cors');
 const userRouter = require('./routes/userRoute');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const { handle404, handle400, handle500 } = require("./error-handling");
 
 
 mongoose.connect(
@@ -55,5 +56,11 @@ app.get('/api', (req, res) =>
   res.sendFile(__dirname + '/public/homepage.html')
 );
 app.use('/api/user', userRouter);
+
+//Error handling
+app.use("/*", (req, res, next) => next({ status: 404, message: "page not found" }));
+app.use(handle404);
+app.use(handle400);
+app.use(handle500);
 
 module.exports = app;

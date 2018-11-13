@@ -16,5 +16,13 @@ describe('/api', () => {
   after(() => {
       return mongoose.disconnect();
   })
-  it('', () => {});
+  describe('/api/wrongURL', () => {
+    it('GET returns 404 error when passed a wrong url', () => {
+      return request.get('/api/wrongurl')
+      .expect(404)
+      .then(res => {
+        expect(res.body.msg).to.equal('/api/wrongurl does not exist')
+      })
+    });
+  });
 });
