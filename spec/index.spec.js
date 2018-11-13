@@ -103,7 +103,7 @@ describe('/api', () => {
           expect(res.body.message).to.equal('Invalid Username or Password.')
         })
       })
-      it.only('POST returns 401 when incorrect username', () => {
+      it('POST returns 401 when incorrect username', () => {
         return request
         .post('/api/user/login')
         .send({
@@ -125,6 +125,14 @@ describe('/api', () => {
         .expect(200)
         .then(res => {
           expect(res.body.score).to.equal(10)
+        })
+      })
+      it('PATCH returns 401 when given not a number', () => {
+        return request
+        .patch(`/api/user/${user[0].username}?score=hello`)
+        .expect(401)
+        .then(res => {
+          expect(res.body.message).to.equal('Invalid score type')
         })
       })
     })

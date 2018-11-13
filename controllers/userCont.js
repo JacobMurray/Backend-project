@@ -40,6 +40,7 @@ exports.loginUser = (req, res, next) => {
 exports.updateScore = (req,res,next) => {
   const {score} = req.query;
   const {username} = req.params
+  if(typeof score !== Number) return res.status(401).send( {message: 'Invalid score type' })
   console.log(score)
   User.findOneAndUpdate(
     {username},
