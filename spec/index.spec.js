@@ -135,6 +135,23 @@ describe('/api', () => {
           expect(res.body.message).to.equal('Invalid score type')
         })
       })
+      it('GET request returns user by username', () => {
+        return request
+        .get(`/api/user/${user[0].username}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.user[0].name).to.equal('Jacob Murray')
+          expect(res.body.user[0].username).to.equal('Jacobgodslayer')
+        })
+      })
+      it('GET request 400 if an ivalid username is entered', () => {
+        return request
+        .get('/api/user/wrongUsername')
+        .expect(400)
+        .then(res => {
+          expect(res.body.message).to.equal('Username is not valid')
+        })
+      })
     })
   })
 
@@ -178,7 +195,7 @@ describe('/api', () => {
     })
 
     describe('/capture', () => {
-      it.only('PATCH request will update the flagCaptured and flagGenerated', () => {
+      it('PATCH request will update the flagCaptured and flagGenerated', () => {
         return request
         .patch(`/api/flag/${user[0].username}/capture`)
         .expect(200)
