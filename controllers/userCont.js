@@ -55,10 +55,10 @@ exports.getAllUsers = (req, res, next) => {
 
 exports.getUserByUsername = (req, res, next ) => {
   const {username} = req.params;
-  User.findOne({username})
+  User.find({username})
   .then(user => {
-    if (!user) return Promise.reject({ status: 400, message: 'Username is not valid' })
-    else res.send({ user })
+    if (user.length < 1) return Promise.reject({ status: 400, message: 'Username is not valid' })
+    else res.send({ user: user[0] })
   })
   .catch(next)
 } 
