@@ -18,9 +18,10 @@ A working example of this API is published at https://capture-flag1.herokuapp.co
 ### EndPoints
 The API provides JSON responses to HTTP request methods relating to Users as described on the API.
 
-#### Users 
+#### Users
+* Users can be retreived using a GET request 
 * Users may be added using the POST request.
-* Users can be retrieved using a POST request
+* User can be retrieved using a POST request
 * Users score can be updated using a PATCH request
 
 #### Errors

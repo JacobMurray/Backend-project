@@ -8,6 +8,7 @@ const User = require('./models/user');
 const DB_URL = process.env.DB_URL || require('./config').DB_URL;
 const cors = require('cors');
 const userRouter = require('./routes/userRoute');
+const flagRouter = require('./routes/flagRoute');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const { handle404, handle400, handle500 } = require("./error-handling");
@@ -57,6 +58,7 @@ app.get('/api', (req, res) =>
   res.sendFile(__dirname + '/public/homepage.html')
 );
 app.use('/api/user', userRouter);
+app.use('/api/flag', flagRouter);
 
 //Error handling
 app.use("/*", (req, res, next) => next({ status: 404, message: `${req.originalUrl} does not exist` }));
