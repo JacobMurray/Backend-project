@@ -1,14 +1,11 @@
-const mongoose          = require("mongoose"),
-passportLocalMongoose   = require("passport-local-mongoose");
+const mongoose = require("mongoose");
 
 const LeaderBoardSchema = new mongoose.Schema({
-    leaderBoard: {
+    leaders: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'users',
         required: true
     }
 });
-
-LeaderBoardSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("LeaderBoard", LeaderBoardSchema);
