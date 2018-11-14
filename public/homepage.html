@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-    <p>POST  /api/user 
-        #to add a user to the database
-    </p>
-    <p>
-        POST /api/user/login 
-        #To login in
-    </p>
-    <P>
-        Patch /api/user/:username
-        #to update the score
-    </P>
-    
-</body>
+  </head>
+  <body>
+      <h2>User</h2>
+    <h3>POST /api/user</h3>
+    <p>#to add a user to the database</p>
+    <h3>POST /api/user/login </h3>
+    <p>#To login in</p>
+    <h3>PATCH /api/user/:username </h3>
+    <p>#to update the score</p>
+    <p>GET /api/user/:username</p>
+    <h3>#To get a single user by username</h3>
+
+    <h2>Flag</h2>
+    <h3>PATCH /api/flag/:username</h3>
+    <p>#To update the flag longitude & latitude and change flagGenerated to true</p>
+    <h3>GET /api/flag/:username</h3>
+    <p>#To get an object with flagGenerated and flagCollected</p>
+    <h3>PATCH 'api/flag/:username/capture'</h3>
+    <p>#To set flagCaptured to true and flagGenerated</p>
+
+
+  </body>
 </html>
