@@ -51,3 +51,14 @@ exports.getAllUsers = (req, res, next) => {
     res.send({ users });
   });
 };
+
+
+exports.getUserByUsername = (req, res, next ) => {
+  const {username} = req.params;
+  User.find({username})
+  .then(user => {
+    console.log(user)
+    res.send({user})
+  })
+  .catch(next)
+} 
