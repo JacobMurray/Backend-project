@@ -1,5 +1,5 @@
 const flagRouter = require("express").Router();
-const {updateFlag, isFlagGenerated, flagCaptured} = require("../controllers/userCont")
+const {updateFlag, isFlagGenerated, flagCaptured} = require("../controllers/flagCont")
 
 flagRouter.patch('/:username', updateFlag);
 flagRouter.get('/:username', isFlagGenerated)

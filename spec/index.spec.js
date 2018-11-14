@@ -136,6 +136,57 @@ describe('/api', () => {
         })
       })
     })
+  })
 
-  });
+  // FLAG CAPTURED TESTING
+
+  describe('/flag', () => {
+    it('If given a wrong username, an error will occur', () => {
+      return request
+      .get(`/api/flag/slayer`)
+      .expect(404)
+      .then(res => {
+        expect(res.body.message).to.equal('Username not found')
+      })
+    })
+    it('GET request retrieves the updatedFlag and the generatedFlag', () => {
+      return request
+      .get(`/api/flag/${user[0].username}`)
+      .expect(200)
+      .then(res => {
+        expect(res.body).to.have.property('generated')
+        expect(res.body).to.have.property('captured')
+      })
+    })
+    it('PATCH request updates long and lat for the users flag', () => {
+      return request
+      .patch(`/api/flag/${user[0].username}?longitude=20&latitude=40`)
+      .expect(200)
+      .then(res => {
+        expect(res.body.user.longitude).to.equal(20)
+        expect(res.body.user.latitude).to.equal(40)
+        expect(res.body.user.flagGenerated).to.equal(true)
+      })
+    })
+    it('PATCH request throws an error if latitude or longitude are not numbers', () => {
+      return request
+      .patch(`/api/flag/${user[0].username}?longitude=hello&latitude=40`)
+      .expect(400)
+      .then(res => {
+        expect(res.body.message).to.equal('Cast to number failed for value "hello" at path "longitude"')
+      })
+    })
+
+    describe('/capture', () => {
+      it.only('PATCH request will update the flagCaptured and flagGenerated', () => {
+        return request
+        .patch(`/api/flag/${user[0].username}/capture`)
+        .expect(200)
+        .then(res => {
+          expect(res.body[0].flagGenerated).to.equal(false)
+          expect(res.body[0].flagCaptured).to.equal(true)
+        })
+      })
+    })
+  })
 });

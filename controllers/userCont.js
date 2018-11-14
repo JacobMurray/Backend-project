@@ -46,48 +46,8 @@ exports.updateScore = (req, res, next) => {
   );
 };
 
-exports.updateFlag = (req, res, next) => {
-  const { latitude, longitude } = req.query;
-  const { username } = req.params;
-  User.findOneAndUpdate(
-    { username },
-    {
-      longitude,
-      latitude,
-      flagGenerated: true
-    }
-  )
-    .then(user => User.find({ username: user.username }))
-    .then(user => res.send(user))
-    .catch(err => next(err));
-};
-
-exports.isFlagGenerated = (req, res, next) => {
-  const { username } = req.params;
-  User.find({ username }).then(user => {
-    res.send({
-      generated: user[0].flagGenerated,
-      captured: user[0].flagCaptured
-    });
-  });
-};
-
 exports.getAllUsers = (req, res, next) => {
   User.find().then(users => {
     res.send({ users });
   });
-};
-
-exports.flagCaptured = (req, res, next) => {
-  const { username } = req.params;
-  User.findOneAndUpdate(
-    { username },
-    {
-      flagCaptured: true,
-      flagGenerated: false
-    }
-  )
-    .then(user => User.find({ username: user.username }))
-    .then(user => res.send(user))
-    .catch(err => next(err));
 };
