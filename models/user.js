@@ -7,8 +7,8 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     score: { type: Number, default: 0 },
-    latitude: {type: Number, default: null},
-    longitude: {type:Number, default: null},
+    latitude: {type: Number, default: 0},
+    longitude: {type:Number, default: 0},
     flagGenerated: {type: Boolean, default: false},
     flagCaptured: {type: Boolean, default: false}
 });
