@@ -15,7 +15,7 @@ exports.updateFlag = (req, res, next) => {
     )
       .then(user => User.find({ username: user.username }))
       .then(user => res.send({user: user[0]}))
-      .catch(err => next(err));
+      .catch(next);
   };
   
   exports.isFlagGenerated = (req, res, next) => {
@@ -43,6 +43,6 @@ exports.updateFlag = (req, res, next) => {
     )
       .then(user => User.find({ username: user.username }))
       .then(user => res.send(user))
-      .catch(err => next(err));
+      .catch(next);
   };
   
