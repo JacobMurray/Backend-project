@@ -12,6 +12,7 @@ exports.addUser = (req, res, next) => {
   else {
     User.register(new User({ username, name }), password)
       .then(user => {
+        if (!user) return Promise.reject({ status: 404, message: 'Username not found' })
         passport.authenticate('local');
         res.status(201).send(user);
       })
