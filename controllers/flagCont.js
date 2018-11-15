@@ -7,8 +7,8 @@ exports.updateFlag = (req, res, next) => {
     User.findOneAndUpdate(
       { username },
       {
-        flagLongitude : latitude,
-        flagLatitude : longitude,
+        flagLongitude : longitude,
+        flagLatitude : latitude,
         flagGenerated: true,
         flagCaptured: false
       }

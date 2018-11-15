@@ -135,7 +135,7 @@ describe('/api', () => {
           expect(res.body.message).to.equal('Invalid score type')
         })
       })
-      it.only('GET request returns user by username', () => {
+      it('GET request returns user by username', () => {
         return request
         .get(`/api/user/${user[0].username}`)
         .expect(200)
@@ -144,7 +144,7 @@ describe('/api', () => {
           expect(res.body.user.username).to.equal('Jacobgodslayer')
         })
       })
-      it.only('GET request 400 if an ivalid username is entered', () => {
+      it('GET request 400 if an ivalid username is entered', () => {
         return request
         .get('/api/user/wrongUsername')
         .expect(400)
@@ -180,8 +180,8 @@ describe('/api', () => {
       .patch(`/api/flag/${user[0].username}?longitude=20&latitude=40`)
       .expect(200)
       .then(res => {
-        expect(res.body.user.longitude).to.equal(20)
-        expect(res.body.user.latitude).to.equal(40)
+        expect(res.body.user.flagLongitude).to.equal(20)
+        expect(res.body.user.flagLatitude).to.equal(40)
         expect(res.body.user.flagGenerated).to.equal(true)
       })
     })
