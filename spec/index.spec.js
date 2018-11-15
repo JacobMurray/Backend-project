@@ -180,12 +180,13 @@ describe('/api', () => {
       .patch(`/api/flag/${user[0].username}`).send({longitude:20, latitude:40})
       .expect(200)
       .then(res => {
+        console.log(res.body)
         expect(res.body.user.flagLongitude).to.equal(20)
         expect(res.body.user.flagLatitude).to.equal(40)
         expect(res.body.user.flagGenerated).to.equal(true)
       })
     })
-    it.only('PATCH request returns 404', () => {
+    it('PATCH request returns 404', () => {
       return request
       .patch(`/api/flag/badname`).send({longitude:20, latitude:40})
       .expect(404)

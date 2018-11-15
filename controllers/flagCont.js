@@ -12,13 +12,17 @@ exports.updateFlag = (req, res, next) => {
       flagGenerated: true,
       flagCaptured: false
     }
-  )
+  ).lean()
     .then(user => {
       if (!user)
         return Promise.reject({ status: 404, message: 'Username not found' });
       return User.find({ username: user.username });
     })
-    .then(user => res.send({ user: user[0] }))
+    .then(user => {
+      const lat= +(user[0].flagLatitude)
+      const lon= +(user[0].flagLongitude)
+      const newuser = {...user[0]._doc, flagLatitude: lat, flagLongitude: lon}
+      res.send({ user: newuser })})
     .catch(next);
 };
 
