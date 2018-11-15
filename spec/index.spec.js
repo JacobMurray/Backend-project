@@ -190,7 +190,7 @@ describe('/api', () => {
       .patch(`/api/flag/${user[0].username}?longitude=hello&latitude=40`)
       .expect(400)
       .then(res => {
-        expect(res.body.message).to.equal('Cast to number failed for value "hello" at path "longitude"')
+        expect(res.body.message).to.equal('Cast to number failed for value "hello" at path "flagLongitude"')
       })
     })
 
