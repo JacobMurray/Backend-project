@@ -16,7 +16,7 @@ exports.addUser = (req, res, next) => {
         res.status(201).send(user);
       })
       .catch(error => {
-        console.log(error);
+        next(error)
         res.send(error);
       });
   }
@@ -43,13 +43,15 @@ exports.updateScore = (req, res, next) => {
   if (!points) return res.status(401).send({ message: 'Invalid score type' });
   User.findOneAndUpdate({ username }, { $inc: { score } }, { new: true }).then(
     user => res.send(user)
-  );
+  )
+  .catch(next)
 };
 
 exports.getAllUsers = (req, res, next) => {
   User.find().then(users => {
     res.send({ users });
-  });
+  })
+  .catch(next)
 };
 
 
