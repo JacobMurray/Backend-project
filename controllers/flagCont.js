@@ -2,12 +2,13 @@ const User = require('../models/user');
 
 exports.updateFlag = (req, res, next) => {
     const { latitude, longitude } = req.query;
+    //const {latitude, longitude} = req.body;
     const { username } = req.params;
     User.findOneAndUpdate(
       { username },
       {
-        longitude,
-        latitude,
+        flagLongitude : latitude,
+        flagLatitude : longitude,
         flagGenerated: true,
         flagCaptured: false
       }
