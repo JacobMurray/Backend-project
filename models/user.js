@@ -7,8 +7,10 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     score: { type: Number, default: 0 },
-    flagLatitude: {type: Number, default: "0"},
-    flagLongitude: {type: Number, default: "0"},
+    flagLat: {type: Number, default: 0},
+    flagLong: {type: Number, default: 0},
+    zoneLat: {type: Number, default: 0},
+    zoneLong: {type: Number, default: 0},
     flagGenerated: {type: Boolean, default: false},
     flagCaptured: {type: Boolean, default: false}
 });
