@@ -70,6 +70,10 @@ exports.updateZoneLocation = (req, res, next) => {
       zoneLong : longitude
     }
   )
-  .then(user => res.send({user : user[0]}))
+  .lean()
+  .then(user => {
+    return User.find({ username: user.username });
+  })
+  .then(user => res.send({user: user[0]}))
   .catch(next)
 }

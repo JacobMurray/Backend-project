@@ -158,7 +158,7 @@ describe('/api', () => {
   // FLAG CAPTURED TESTING
 
   describe('/flag', () => {
-    it.only('If given a wrong username, an error will occur', () => {
+    it('If given a wrong username, an error will occur', () => {
       return request
       .get(`/api/flag/hello`)
       //.expect(404)
@@ -212,6 +212,17 @@ describe('/api', () => {
         .then(res => {
           expect(res.body.user.flagGenerated).to.equal(false)
           expect(res.body.user.flagCaptured).to.equal(true)
+        })
+      })
+    })
+    describe('/zone', () => {
+      it.only('PATCH zone location', () => {
+        return request
+        .patch(`/api/flag/${user[0].username}/zone?longitude=10&latitude=40`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.user.zoneLat).to.equal(40)
+          expect(res.body.user.zoneLong).to.equal(10)
         })
       })
     })
