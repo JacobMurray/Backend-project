@@ -1,8 +1,8 @@
 const User = require('../models/user');
 
 exports.updateFlag = (req, res, next) => {
-  //const { latitude, longitude } = req.query;
-  const { latitude, longitude } = req.body;
+  const { latitude, longitude } = req.query;
+  //const { latitude, longitude } = req.body;
   const { username } = req.params;
   User.findOneAndUpdate(
     { username },
@@ -12,17 +12,19 @@ exports.updateFlag = (req, res, next) => {
       flagGenerated: true,
       flagCaptured: false
     }
-  ).lean()
+  )
+    .lean()
     .then(user => {
       if (!user)
         return Promise.reject({ status: 404, message: 'Username not found' });
       return User.find({ username: user.username });
     })
     .then(user => {
-      const lat= +(user[0].flagLatitude)
-      const lon= +(user[0].flagLongitude)
-      const newuser = {...user[0]._doc, flagLatitude: lat, flagLongitude: lon}
-      res.send({ user: newuser })})
+      //const lat= +(user[0].flagLatitude)
+      //const lon= +(user[0].flagLongitude)
+      //const newuser = {...user[0]._doc, flagLatitude: lat, flagLongitude: lon}
+      res.send({ user });
+    })
     .catch(next);
 };
 
