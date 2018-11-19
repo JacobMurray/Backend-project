@@ -2,8 +2,6 @@ const User = require('../models/user');
 
 exports.updateFlag = (req, res, next) => {
   const { latitude, longitude } = req.query;
-  console.log(latitude)
-  //if(!latitude || !longitude) {Promise.reject({ status: 400, message: 'You need a latitude and longitude' })}
   //const { latitude, longitude } = req.body;
   const { username } = req.params;
   User.findOneAndUpdate(
@@ -23,17 +21,14 @@ exports.updateFlag = (req, res, next) => {
     .then(user => {
       res.send({ user: user[0] });
     })
-    .catch(err => {
-      console.log(err)
-      next(err)
-    });
+    .catch(next);
 };
 
 exports.isFlagGenerated = (req, res, next) => {
   const { username } = req.params;
   User.find({ username })
     .then(user => {
-      if (!user)
+      if (user.length <= 0)
         return Promise.reject({ status: 404, message: 'Username not found' });
       res.send({
         generated: user[0].flagGenerated,

@@ -186,7 +186,7 @@ describe('/api', () => {
         expect(res.body.user.flagGenerated).to.equal(true)
       })
     })
-    it.only('PATCH request returns 404', () => {
+    it('PATCH request returns 404', () => {
       return request
       .patch(`/api/flag/badname`)
       .expect(404)

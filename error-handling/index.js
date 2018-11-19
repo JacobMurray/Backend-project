@@ -6,7 +6,6 @@ exports.handle404 = (err, req, res, next) => {
 exports.handle400 = (err, req, res, next) => {
     if(err.name === 'ValidationError' || err.name === 'CastError') err.status = 400;
     const {message, status} = err;
-    console.log(message)
     if(status === 400) res.status(400).send({message})
     else next(err)
 }
