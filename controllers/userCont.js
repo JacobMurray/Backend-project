@@ -42,7 +42,7 @@ exports.updateScore = (req, res, next) => {
   const points = parseInt(score);
   const { username } = req.params;
   if (!points) return res.status(401).send({ message: 'Invalid score type' });
-  User.findOneAndUpdate({ username }, { $inc: { score } }, { new: true }).then(
+  User.findOneAndUpdate({ username }, { $inc: { score } }, { new: true }).lean().then(
     user => res.send(user)
   )
   .catch(next)

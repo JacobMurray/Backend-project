@@ -186,7 +186,7 @@ describe('/api', () => {
         expect(res.body.user.flagGenerated).to.equal(true)
       })
     })
-    it('PATCH request returns 404', () => {
+    it.only('PATCH request returns 404', () => {
       return request
       .patch(`/api/flag/badname`)
       .expect(404)
@@ -216,7 +216,7 @@ describe('/api', () => {
       })
     })
     describe('/zone', () => {
-      it.only('PATCH zone location', () => {
+      it('PATCH zone location', () => {
         return request
         .patch(`/api/flag/${user[0].username}/zone?longitude=10&latitude=40`)
         .expect(200)
