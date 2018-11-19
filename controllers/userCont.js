@@ -4,13 +4,13 @@ const passport = require('passport');
 const secret = '7x0jhxt"9(thpX6';
 
 exports.addUser = (req, res, next) => {
-  const { username, name, password, confirm } = req.body;
+  const { username, name, password, confirm, image } = req.body;
   if (!username || !name || !confirm)
     res.status(400).send({ message: 'Please fill out all fields' });
   if (password !== confirm)
     res.status(400).send({ error: 'Passwords must match' });
   else {
-    User.register(new User({ username, name }), password)
+    User.register(new User({ username, name, image }), password)
       .then(user => {
         if (!user) return Promise.reject({ status: 404, message: 'Username not found' })
         passport.authenticate('local');
