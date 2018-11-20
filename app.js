@@ -8,6 +8,7 @@ const User = require('./models/user');
 const DB_URL = process.env.DB_URL || require('./config').DB_URL;
 const cors = require('cors');
 const userRouter = require('./routes/userRoute');
+const usersRouter = require('./routes/usersRoute')
 const flagRouter = require('./routes/flagRoute');
 const leaderRouter = require('./routes/leaderRoute');
 const JwtStrategy = require('passport-jwt').Strategy;
@@ -60,7 +61,7 @@ app.get('/api', (req, res) =>
 );
 app.use('/api/user', userRouter);
 app.use('/api/flag', flagRouter);
-app.use('/api/leader', leaderRouter)
+app.use('/api/users', usersRouter)
 
 //Error handling
 app.use('/*', (req, res, next) =>
