@@ -3,6 +3,7 @@ const User = require('../models/user');
 exports.updateFlag = (req, res, next) => {
   const { latitude, longitude } = req.query;
   //const { latitude, longitude } = req.body;
+  if(!latitude || !longitude) throw {status: 400, message: 'latitude and longitude is needed'}
   const { username } = req.params;
   User.findOneAndUpdate(
     { username },

@@ -188,7 +188,7 @@ describe('/api', () => {
     })
     it('PATCH request returns 404', () => {
       return request
-      .patch(`/api/flag/badname`)
+      .patch(`/api/flag/badname?longitude=30&latitude=40`)
       .expect(404)
       .then(res => {
         expect(res.body.message).to.equal('Username not found')
@@ -197,10 +197,17 @@ describe('/api', () => {
     it('PATCH request throws an error if latitude or longitude are not numbers', () => {
       return request
       .patch(`/api/flag/${user[0].username}?longitude=hello&latitude=40`)
-      .send({longitude:'hello', latitude:40})
       .expect(400)
       .then(res => {
         expect(res.body.message).to.equal('Cast to number failed for value "hello" at path "flagLong"')
+      })
+    })
+    it('PATCH request throws an error if latitude or longitude are not declared', () => {
+      return request
+      .patch(`/api/flag/${user[0].username}`)
+      .expect(400)
+      .then(res => {
+        expect(res.body.message).to.equal('latitude and longitude is needed')
       })
     })
 
