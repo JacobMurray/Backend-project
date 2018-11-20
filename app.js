@@ -10,7 +10,6 @@ const cors = require('cors');
 const userRouter = require('./routes/userRoute');
 const usersRouter = require('./routes/usersRoute')
 const flagRouter = require('./routes/flagRoute');
-const leaderRouter = require('./routes/leaderRoute');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const { handle404, handle400, handle500 } = require('./error-handling');
