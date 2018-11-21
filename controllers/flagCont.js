@@ -86,6 +86,11 @@ exports.patchFlagCount = (req, res, next) => {
     { $inc: { dropFlagCount: 1 } },
     { new: true }
   )
-    .then(user => res.send({user}))
+    .then(user => {
+      if (!user) {
+        return Promise.reject({ status: 404, message: 'Username not found' });
+      }
+      res.send({user})
+    })
     .catch(next);
 };
