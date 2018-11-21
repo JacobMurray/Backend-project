@@ -13,7 +13,8 @@ const UserSchema = new mongoose.Schema({
     zoneLat: {type: Number, default: 0},
     zoneLong: {type: Number, default: 0},
     flagGenerated: {type: Boolean, default: false},
-    flagCaptured: {type: Boolean, default: false}
+    flagCaptured: {type: Boolean, default: false},
+    dropFlagCount: {type: Number, default: 0}
 });
 
 UserSchema.plugin(passportLocalMongoose);

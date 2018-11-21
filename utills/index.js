@@ -1,11 +1,11 @@
-exports.passwordStrength = password => {
+const passwordStrength = password => {
 let score = 0;
 if(!password) return score;
 
 let letters = new Object();
 for(let i = 0; i< password.length; i++){
     letters[password[i]] = (letters[password[i]] || 0) +1;
-    score += 5 /letters[password[i]]
+    score += 1 /letters[password[i]]
 }
   const variations = {
     digit: /\d/.test(password),
@@ -22,3 +22,5 @@ for(let i = 0; i< password.length; i++){
   score += (count-1) * 10
   return  Math.round(score);
 };
+
+console.log(passwordStrength('Passw0rd'))

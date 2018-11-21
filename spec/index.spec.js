@@ -234,4 +234,15 @@ describe('/api', () => {
       })
     })
   })
+  describe('/count', () => {
+    it.only('PATCH zone location', () => {
+      return request
+      .patch(`/api/flag/${user[0].username}/count`)
+      .expect(200)
+      .then(res => {
+        console.log(res.body.user)
+        expect(res.body.user.dropFlagCount).to.equal(1)
+      })
+    })
+  })
 });
