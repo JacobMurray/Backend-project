@@ -1,6 +1,6 @@
 module.exports = [
     {
-      "username": 'Jacobgodslayer',
+      "username": 'Jacob',
       "name": 'Jacob Murray',
       "password": 'password',
       "confirm": 'password'
@@ -12,7 +12,7 @@ module.exports = [
       "confirm": 'password'
     },
     { 
-      "username" : "gravity",
+      "username" : "chris",
       "name": 'Chris',
       "password": "password",
       "confirm": "password"

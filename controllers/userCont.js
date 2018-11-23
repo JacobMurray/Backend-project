@@ -8,7 +8,7 @@ exports.addUser = (req, res, next) => {
   if (!username || !name || !confirm)
     res.status(400).send({ message: 'Please fill out all fields' });
   if (password !== confirm)
-    res.status(400).send({ error: 'Passwords must match' });
+    res.status(400).send({ message: 'Passwords must match' });
   else {
     User.register(new User({ username, name, image }), password)
       .then(user => {

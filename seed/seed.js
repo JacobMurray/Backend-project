@@ -1,4 +1,4 @@
-//process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production'
 const mongoose = require('mongoose');
 const User = require('../models/user');
 const passport = require('passport')
